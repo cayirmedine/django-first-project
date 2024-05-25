@@ -6,3 +6,9 @@ from django.http.response import HttpResponse
 # http://localhost:8000
 def index(request):
     return HttpResponse("Hello World!")
+
+def list(request):
+    return HttpResponse("List")
+
+def detail(request):
+    return HttpResponse("Detail")
