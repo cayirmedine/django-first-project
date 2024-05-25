@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'myapp.apps.MyappConfig' #define the app to the project or define lile
+    'myapp'
 ]
 
 MIDDLEWARE = [
