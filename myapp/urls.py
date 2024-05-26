@@ -5,5 +5,6 @@ urlpatterns = [
     path("", views.index, name='index'),
     path("index", views.index, name='index'),
     path("list", views.list, name='list'),
-    path("detail", views.detail, name='detail')
+    path("detail", views.detail, name='detail'),
+    path('<category>', views.getProductByCategory) #dynamic path
 ]

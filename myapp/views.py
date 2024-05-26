@@ -12,3 +12,17 @@ def list(request):
 
 def detail(request):
     return HttpResponse("Detail")
+
+def getProductByCategory(request, category):
+    category_text = None
+
+    if category == "computer":
+        category_text = "Computer Category"
+    
+    elif category == "phone":
+        category_text = "Phone Category"
+
+    else:
+        category_text = "Wrong Category"
+
+    return HttpResponse(category_text)
