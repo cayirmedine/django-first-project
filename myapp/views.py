@@ -26,3 +26,6 @@ def getProductByCategory(request, category):
         category_text = "Wrong Category"
 
     return HttpResponse(category_text)
+
+def getProductByCategoryId(request, category):
+    return HttpResponse(category)
