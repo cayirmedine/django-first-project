@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http.response import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
+from django.urls import reverse
 
 # Create your views here.
 
@@ -46,6 +47,14 @@ def getProductByCategoryId(request, category_id):
     if category_id > len(category_list):
         return HttpResponseNotFound("Wrong Category")
 
-    redirect_text = category_list[category_id-1]
+    #redirect_text = category_list[category_id-1]
 
-    return redirect("/products/"+ redirect_text)
+    #return redirect("/products/"+ redirect_text)
+
+    category_text = category_list[category_id - 1]
+
+    redirect_path = reverse("products_by_category", args=[category_text]) #redirect path with name info
+
+    return redirect(redirect_path)
+
+    
