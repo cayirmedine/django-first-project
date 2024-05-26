@@ -12,10 +12,17 @@ url_data = {
 
 # http://localhost:8000
 def index(request):
-    return HttpResponse("Hello World!")
+    categories = list(url_data.keys())
 
-def detail(request):
-    return HttpResponse("Detail")
+    list_items = ""
+
+    for category in categories:
+        redirect_path = reverse("products_by_category", args=[category])
+        list_items += f"<li><a href='{redirect_path}'>{category}</a></li>"
+
+    html = f"<ul>{list_items}</ul>"
+
+    return HttpResponse(html)
 
 def getProductByCategory(request, category):
     '''category_text = None
@@ -33,9 +40,10 @@ def getProductByCategory(request, category):
 
     try:
         category_text = url_data[category]
-        return HttpResponse(category_text)
+        #return HttpResponse(category_text)
+        return HttpResponse(f"<h1>{category_text}</h1>")
     except:
-        return HttpResponseNotFound("Wrong Category")
+        return HttpResponseNotFound("<h1>Wrong Category</h1>")
 
 def getProductByCategoryId(request, category_id):
     #return HttpResponse(category)
