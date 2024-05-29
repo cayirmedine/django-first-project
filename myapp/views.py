@@ -5,9 +5,9 @@ from django.urls import reverse
 # Create your views here.
 
 url_data = {
-    "computer": "Computer Category",
-    "phone": "Phone Category",
-    "electronic": "Electronic Category",
+    "computer": ["comp1", "comp2"],
+    "phone": ["phone1", "phone2"],
+    "electronic": []
 }
 
 # http://localhost:8000
@@ -46,13 +46,13 @@ def getProductByCategory(request, category):
     return HttpResponse(category_text)'''
 
     try:
-        category_text = url_data[category]
+        products = url_data[category]
         #return HttpResponse(category_text)
         #return HttpResponse(f"<h1>{category_text}</h1>")
 
         return render(request, "myapp/products.html", {
             "category": category,
-            "category_text": category_text
+            "products": products
         }) # pass args to the page
     except:
         return HttpResponseNotFound("<h1>Wrong Category</h1>")
