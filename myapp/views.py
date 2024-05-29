@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http.response import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.urls import reverse
+from datetime import datetime
 
 # Create your views here.
 
@@ -52,7 +53,8 @@ def getProductByCategory(request, category):
 
         return render(request, "myapp/products.html", {
             "category": category,
-            "products": products
+            "products": products,
+            "now": datetime.now
         }) # pass args to the page
     except:
         return HttpResponseNotFound("<h1>Wrong Category</h1>")
