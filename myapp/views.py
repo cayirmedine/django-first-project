@@ -43,7 +43,12 @@ def getProductByCategory(request, category):
     try:
         category_text = url_data[category]
         #return HttpResponse(category_text)
-        return HttpResponse(f"<h1>{category_text}</h1>")
+        #return HttpResponse(f"<h1>{category_text}</h1>")
+
+        return render(request, "myapp/products.html", {
+            "category": category,
+            "category_text": category_text
+        }) # pass args to the page
     except:
         return HttpResponseNotFound("<h1>Wrong Category</h1>")
 
