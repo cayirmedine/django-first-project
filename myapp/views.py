@@ -12,7 +12,7 @@ url_data = {
 
 # http://localhost:8000
 def index(request):
-    categories = list(url_data.keys())
+    '''categories = list(url_data.keys())
 
     list_items = ""
 
@@ -22,7 +22,9 @@ def index(request):
 
     html = f"<ul>{list_items}</ul>"
 
-    return HttpResponse(html)
+    return HttpResponse(html)'''
+
+    return render(request, "myapp/index.html") #In seetings.py file templates defined as template path so myapp/ necessary
 
 def getProductByCategory(request, category):
     '''category_text = None
