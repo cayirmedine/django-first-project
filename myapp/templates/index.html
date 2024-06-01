@@ -1,0 +1,17 @@
+{% extends "base_layout.html" %}
+
+{% load static %} <!-- Neccessary when you want to use static files-->
+
+{% block css_file %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock css_file %}
+
+{% block content %}
+    <ul>
+        {% for category in categories%}
+            <li><a href="{% url 'products_by_category' category=category %}"> {{ category }} </a></li> <!-- you can write like just category instead of category = category, category is expected paraemeter from the url define -->
+            {% endfor %}
+    </ul>
+{% endblock content %}
+
+{% block js_file %}<script src="{% static "js/script.js" %}"></script>{% endblock js_file %}

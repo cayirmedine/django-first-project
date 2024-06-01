@@ -27,7 +27,7 @@ def index(request):
 
     # return render(request, "myapp/index.html") #In seetings.py file templates defined as template path so myapp/ necessary
 
-    return render(request, "myapp/index.html", {
+    return render(request, "index.html", {
         "categories": categories
     })
 
@@ -51,7 +51,7 @@ def getProductByCategory(request, category):
         #return HttpResponse(category_text)
         #return HttpResponse(f"<h1>{category_text}</h1>")
 
-        return render(request, "myapp/products.html", {
+        return render(request, "products.html", { #These html files moved to app's templates directory, we dont need myapp/ anymore
             "category": category,
             "products": products,
             "now": datetime.now
