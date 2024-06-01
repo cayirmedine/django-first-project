@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <ul>
-            {% for category in categories%}
-                <li><a href="{% url 'products_by_category' category=category %}"> {{ category }} </a></li> <!-- you can write like just category instead of category = category, category is expected paraemeter from the url define -->
+{% extends "base_layout.html" %}
+
+{% block content %}
+    <ul>
+        {% for category in categories%}
+            <li><a href="{% url 'products_by_category' category=category %}"> {{ category }} </a></li> <!-- you can write like just category instead of category = category, category is expected paraemeter from the url define -->
             {% endfor %}
-        </ul>
-    </body>
-</html>
+    </ul>
+{% endblock content %}
