@@ -7,11 +7,15 @@
 {% endblock css_file %}
 
 {% block content %}
-    <ul>
-        {% for category in categories%}
-            <li><a href="{% url 'products_by_category' category=category %}"> {{ category }} </a></li> <!-- you can write like just category instead of category = category, category is expected paraemeter from the url define -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% for category in categories%}
+            <a class="btn btn-primary" href="{% url 'products_by_category' category=category %}"> {{ category }} </a><!-- you can write like just category instead of category = category, category is expected paraemeter from the url define -->
             {% endfor %}
-    </ul>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 
 {% block js_file %}<script src="{% static "js/script.js" %}"></script>{% endblock js_file %}
