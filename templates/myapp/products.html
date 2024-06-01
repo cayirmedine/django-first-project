@@ -16,8 +16,6 @@
             <!-- {{ products|join:", "}} -->
         </div>
     {% else %}
-        <div>
-            No product
-        </div>
+        {% include 'partials/_no-product.html' %}
     {% endif %}
 {% endblock content %}

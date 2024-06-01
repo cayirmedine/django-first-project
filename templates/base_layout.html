@@ -7,6 +7,8 @@
         <title>{% block page_title %} Base Layout {% endblock page_title %} </title>
     </head>
     <body>
+        {% include 'patials/_header.html' %}
         {% block content %}{% endblock content %}
+        {% include 'partial/_footer.html' %}
     </body>
 </html>
