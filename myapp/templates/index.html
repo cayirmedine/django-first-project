@@ -10,9 +10,15 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                {% for category in categories%}
-            <a class="btn btn-primary" href="{% url 'products_by_category' category=category %}"> {{ category }} </a><!-- you can write like just category instead of category = category, category is expected paraemeter from the url define -->
-            {% endfor %}
+                <!--{% for category in categories%}
+            <a class="btn btn-primary" href="{% url 'products_by_category' category=category %}"> {{ category }} </a>   you can write like just category instead of category = category, category is expected paraemeter from the url define 
+            {% endfor %}-->
+
+            <ul>
+                {% for product in products %}
+                    <li> {{ product.name }} - {{ product.price }} </li>
+                {% endfor %}
+            </ul>
             </div>
         </div>
     </div>
