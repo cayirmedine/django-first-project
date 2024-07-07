@@ -2,18 +2,19 @@ from django.shortcuts import render, redirect
 from django.http.response import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.urls import reverse
 from datetime import datetime
+from .models import Product
 
 # Create your views here.
 
-url_data = {
+'''url_data = {
     "computer": ["comp1", "comp2"],
     "phone": ["phone1", "phone2"],
     "electronic": []
-}
+}'''
 
 # http://localhost:8000
 def index(request):
-    categories = list(url_data.keys())
+    # categories = list(url_data.keys())
 
     '''list_items = ""
 
@@ -25,11 +26,15 @@ def index(request):
 
     return HttpResponse(html)'''
 
+    products = Product.objects.all()
+
+    context = {
+        "products": products
+    }
+
     # return render(request, "myapp/index.html") #In seetings.py file templates defined as template path so myapp/ necessary
 
-    return render(request, "index.html", {
-        "categories": categories
-    })
+    return render(request, "index.html", context)
 
 
 def getProductByCategory(request, category):
