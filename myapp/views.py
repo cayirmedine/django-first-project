@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.http.response import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http.response import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, Http404
 from django.urls import reverse
 from datetime import datetime
 from .models import Product
@@ -36,6 +36,22 @@ def index(request):
 
     return render(request, "index.html", context)
 
+def details(request, id):
+
+    '''try:
+        product = Product.objects.get(pk=id) # id=id can be used too
+
+    except:
+        raise Http404()'''
+    
+
+    product = get_object_or_404(Product, pk=id)
+
+    context = {
+        "product": product
+    }
+
+    return render(request, "details.html", context)
 
 def getProductByCategory(request, category):
     '''category_text = None
