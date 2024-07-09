@@ -36,7 +36,7 @@ def index(request):
 
     return render(request, "index.html", context)
 
-def details(request, id):
+def details(request, slug):
 
     '''try:
         product = Product.objects.get(pk=id) # id=id can be used too
@@ -45,7 +45,9 @@ def details(request, id):
         raise Http404()'''
     
 
-    product = get_object_or_404(Product, pk=id)
+    # product = get_object_or_404(Product, pk=id)
+
+    product = get_object_or_404(Product, slug=slug)
 
     context = {
         "product": product
