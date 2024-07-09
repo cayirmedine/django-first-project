@@ -16,7 +16,7 @@
 
             <ul>
                 {% for product in products %}
-                    <li> {{ product.name }} - {{ product.price }} </li>
+                    <li> <a href={% url "product-details" product.slug %}>{{ product.name }}</a> - {{ product.price }} </li>
                 {% endfor %}
             </ul>
             </div>
