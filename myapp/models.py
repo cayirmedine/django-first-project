@@ -9,7 +9,9 @@ class Product(models.Model):
     img_url = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True) #You can use null=True instead of default=True, if you want default null value
     category = models.CharField(max_length=50, null=True) #blank means null string
-    slug = models.SlugField(default="", null=False) # null=False equals to not nullable
+    slug = models.SlugField(default="", null=False, db_index=True, unique=True) # null=False equals to not nullable
+    #if you define primary_key=True then automatically defined as unique=True
+    #if you use primary_key then id not created automatically
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
