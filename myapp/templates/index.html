@@ -16,9 +16,16 @@
 
             <ul>
                 {% for product in products %}
-                    <li> <a href={% url "product-details" product.slug %}>{{ product.name }}</a> - {{ product.price }} </li>
+                    {% if product.is_active %}
+                        <li> <a href={% url "product-details" product.slug %}>{{ product.name }}</a> - {{ product.price }} </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
+            <hr>
+            <p>{{ product_count }} products found.</p>
+            <p>Average Price: {{ price_calcs.price__avg }} TL </p> <!-- not sure, but dictionary key created with processed with func name and its parameter -->
+            <p>Min Price: {{ price_calcs.price__min}} TL </p>
+            <p>Max Price: {{ price_calcs.price__max}} TL </p>
             </div>
         </div>
     </div>
