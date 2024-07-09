@@ -3,6 +3,7 @@ from django.http.response import HttpResponse, HttpResponseRedirect, HttpRespons
 from django.urls import reverse
 from datetime import datetime
 from .models import Product
+from django.db.models import Avg, Min, Max
 
 # Create your views here.
 
@@ -26,10 +27,14 @@ def index(request):
 
     return HttpResponse(html)'''
 
-    products = Product.objects.all()
+    products = Product.objects.all().order_by("-price")
+    product_count = Product.objects.filter(is_active=True).count()
+    price_calcs = Product.objects.filter(is_active=True).aggregate(Avg('price'), Min('price'), Max('price'))
 
     context = {
-        "products": products
+        "products": products,
+        "product_count": product_count,
+        "price_calcs": price_calcs
     }
 
     # return render(request, "myapp/index.html") #In seetings.py file templates defined as template path so myapp/ necessary
