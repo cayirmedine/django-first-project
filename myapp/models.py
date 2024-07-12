@@ -9,13 +9,16 @@ class Product(models.Model):
     img_url = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True) #You can use null=True instead of default=True, if you want default null value
     category = models.CharField(max_length=50, null=True) #blank means null string
-    slug = models.SlugField(default="", null=False, db_index=True, unique=True) # null=False equals to not nullable
+    slug = models.SlugField(default="", null=False, db_index=True, unique=True, blank=True, editable=False) 
+    # null=False equals to not nullable
     #if you define primary_key=True then automatically defined as unique=True
     #if you use primary_key then id not created automatically
+    #blank=True means you dont need to enter slug value in form
+    #if you use editable=False, defined attr does not display in admin form 
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(args, kwargs)
 
     def __str__(self):
-        return f"{self.name} {self.price}"
+        return f"{self.name} {self.price} {self.slug}"
