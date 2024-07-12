@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils.text import slugify
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
 # Create your models here.
 class Product(models.Model):
     name = models.CharField(max_length=50)
@@ -8,7 +11,8 @@ class Product(models.Model):
     description = models.TextField()
     img_url = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True) #You can use null=True instead of default=True, if you want default null value
-    category = models.CharField(max_length=50, null=True) #blank means null string
+    #category = models.CharField(max_length=50, null=True) #blank means null string
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(default="", null=False, db_index=True, unique=True, blank=True, editable=False) 
     # null=False equals to not nullable
     #if you define primary_key=True then automatically defined as unique=True
