@@ -2,11 +2,11 @@ from django.contrib import admin
 from .models import Product, Category
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", "price", "is_active", "slug", "category")
+    list_display = ("name", "price", "is_active", "slug")
     #readonly_fields = ["slug"]
     prepopulated_fields = { "slug": ["name"] }
     list_display_links = ("name", "slug")
-    list_filter = ("name", "price", "category")
+    list_filter = ("name", "price")
     list_editable = ["is_active"]
     search_fields = ("name", "description")
 
