@@ -6,8 +6,16 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Address(models.Model):
+    street = models.CharField(max_length=100)
+    postal_code = models.CharField(max_length=4)
+    city = models.CharField(max_length=50)
 
-# Create your models here.
+class Supplier(models.Model):
+    company_name = models.CharField(max_length=100)
+    address = models.OneToOneField(Address, on_delete=models.CASCADE, null=True)
+
 class Product(models.Model):
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=8, decimal_places=3)
@@ -23,6 +31,7 @@ class Product(models.Model):
     #blank=True means you dont need to enter slug value in form
     #if you use editable=False, defined attr does not display in admin form 
     categories = models.ManyToManyField(Category, related_name="products")
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"{self.name} {self.price} {self.slug}"
