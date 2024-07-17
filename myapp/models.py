@@ -12,9 +12,15 @@ class Address(models.Model):
     postal_code = models.CharField(max_length=4)
     city = models.CharField(max_length=50)
 
+    def __str__(self):
+        return f"{self.street} {self.city}, {self.postal_code}"
+
 class Supplier(models.Model):
     company_name = models.CharField(max_length=100)
     address = models.OneToOneField(Address, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.company_name
 
 class Product(models.Model):
     name = models.CharField(max_length=50)
