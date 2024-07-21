@@ -1,0 +1,27 @@
+{% extends "base_layout.html" %}
+
+{% load static %} <!-- Neccessary when you want to use static files-->
+
+{% block css_file %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock css_file %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+            <ul>
+                {% for product in products %}
+                    {% if product.is_active %}
+                        <li> <a href={% url "product-details" product.slug %}>{{ product.name }}</a> - {{ product.price }} </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <hr>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block js_file %}<script src="{% static "js/script.js" %}"></script>{% endblock js_file %}
