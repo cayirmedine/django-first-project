@@ -17,6 +17,7 @@
         <div class="row">
             <div class="col">
                 <form method="POST"> <!--when action is not given, post req sent to current url path-->
+                    {% csrf_token %}
                     <div class="mb-3">
                         <label for="product_name">Name</label>
                         <input type="text" name="product_name" class="form-control" id="product_name">
