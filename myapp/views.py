@@ -27,7 +27,7 @@ def index(request):
 
     return HttpResponse(html)'''
 
-    products = Product.objects.all().order_by("-price")
+    products = Product.objects.filter(is_active=True).order_by("-price")
     '''product_count = Product.objects.filter(is_active=True).count()
     price_calcs = Product.objects.filter(is_active=True).aggregate(Avg('price'), Min('price'), Max('price'))'''
 
@@ -42,17 +42,22 @@ def index(request):
     return render(request, "index.html", context)
 
 def list(request):
-    print(request.GET['q'])
 
-    if request.GET['q'] and request.GET['q'] is not None:
+    if 'q' in request.GET and request.GET.get('q'):
 
-        q = request.GET['q']
+        q = request.GET.get('q')
 
         products = Product.objects.filter(name__icontains=q).order_by("-price")
 
+    elif 'active' in request.GET and request.GET.get('active'):
+
+        is_actv = request.GET.get('active')
+
+        products = Product.objects.filter(is_active=is_actv).order_by("-price")
+
     else: 
 
-        return HttpResponseRedirect("/products")
+        products = Product.objects.all().order_by("-price")
 
     context = {
         "products": products,
@@ -61,6 +66,17 @@ def list(request):
     return render(request, "list.html", context)
 
 def create(request):
+    if request.method == "POST":
+        p_name = request.POST['product_name']
+        price = request.POST['price']
+        desc = request.POST['description']
+        slug = request.POST['slug']
+
+        p = Product(name=p_name, price=price, description=desc, img_url="test.jpg", slug=slug)
+        p.save()
+
+        return HttpResponseRedirect("list")
+
     return render(request, "create.html")
 
 def details(request, slug):
