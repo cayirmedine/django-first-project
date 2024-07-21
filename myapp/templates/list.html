@@ -13,9 +13,7 @@
 
             <ul>
                 {% for product in products %}
-                    {% if product.is_active %}
-                        <li> <a href={% url "product-details" product.slug %}>{{ product.name }}</a> - {{ product.price }} </li>
-                    {% endif %}
+                    <li> <a href={% url "product-details" product.slug %}>{{ product.name }}</a> - {{ product.price }} </li>
                 {% endfor %}
             </ul>
             <hr>
