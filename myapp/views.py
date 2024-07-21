@@ -28,18 +28,37 @@ def index(request):
     return HttpResponse(html)'''
 
     products = Product.objects.all().order_by("-price")
-    product_count = Product.objects.filter(is_active=True).count()
-    price_calcs = Product.objects.filter(is_active=True).aggregate(Avg('price'), Min('price'), Max('price'))
+    '''product_count = Product.objects.filter(is_active=True).count()
+    price_calcs = Product.objects.filter(is_active=True).aggregate(Avg('price'), Min('price'), Max('price'))'''
 
     context = {
         "products": products,
-        "product_count": product_count,
-        "price_calcs": price_calcs
+        #"product_count": product_count,
+        #"price_calcs": price_calcs
     }
 
     # return render(request, "myapp/index.html") #In seetings.py file templates defined as template path so myapp/ necessary
 
     return render(request, "index.html", context)
+
+def list(request):
+    print(request.GET['q'])
+
+    if request.GET['q'] and request.GET['q'] is not None:
+
+        q = request.GET['q']
+
+        products = Product.objects.filter(name__icontains=q).order_by("-price")
+
+    else: 
+
+        return HttpResponseRedirect("/products")
+
+    context = {
+        "products": products,
+    }
+
+    return render(request, "list.html", context)
 
 def details(request, slug):
 
@@ -60,8 +79,8 @@ def details(request, slug):
 
     return render(request, "details.html", context)
 
-def getProductByCategory(request, category):
-    '''category_text = None
+'''def getProductByCategory(request, category):
+    category_text = None
 
     if category == "computer":
         category_text = "Computer Category"
@@ -72,7 +91,7 @@ def getProductByCategory(request, category):
     else:
         category_text = "Wrong Category"
 
-    return HttpResponse(category_text)'''
+    return HttpResponse(category_text)
 
     try:
         products = url_data[category]
@@ -105,6 +124,6 @@ def getProductByCategoryId(request, category_id):
 
     redirect_path = reverse("products_by_category", args=[category_text]) #redirect path with name info
 
-    return redirect(redirect_path)
+    return redirect(redirect_path)'''
 
     
