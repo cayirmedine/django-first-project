@@ -1,0 +1,37 @@
+{% extends "base_layout.html" %}
+
+{% load static %} <!-- Neccessary when you want to use static files-->
+
+{% block css_file %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock css_file %}
+
+{% block page_title %}
+    create.html
+{% endblock page_title %}
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form method="POST"> <!--when action is not given, post req sent to current url path-->
+                    <div class="mb-3">
+                        <label for="product_name">Name</label>
+                        <input type="text" name="product_name" class="form-control" id="product_name">
+                        <label for="price">Price</label>
+                        <input type="number" name="price" class="form-control" id="price">
+                        <label for="description">Description</label>
+                        <textarea name="description" class="form-control"></textarea>
+                        <label for="slug">Slug</label>
+                        <input type="text" name="slug" class="form-control" id="slug">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block js_file %}<script src="{% static "js/script.js" %}"></script>{% endblock js_file %}
