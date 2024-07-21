@@ -60,6 +60,9 @@ def list(request):
 
     return render(request, "list.html", context)
 
+def create(request):
+    return render(request, "create.html")
+
 def details(request, slug):
 
     '''try:

@@ -6,6 +6,7 @@ urlpatterns = [
     path("index", views.index, name='index'),
     #path("<int:id>", views.details),
     path("list", views.list),
+    path("create", views.create),
     path("<slug:slug>", views.details, name="product-details"),
     #path('<category>', views.getProductByCategory) #dynamic path
     #path('<int:category_id>', views.getProductByCategoryId), #accepts only int value as a parameter
