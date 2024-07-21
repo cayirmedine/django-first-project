@@ -14,6 +14,11 @@
             <a class="btn btn-primary" href="{% url 'products_by_category' category=category %}"> {{ category }} </a>   you can write like just category instead of category = category, category is expected paraemeter from the url define 
             {% endfor %}-->
 
+            <form action="list" method="GET">
+                Search Text: <input type="text" name="q">
+                <button type="submit">Search</button>
+            </form>
+
             <ul>
                 {% for product in products %}
                     {% if product.is_active %}
@@ -22,10 +27,10 @@
                 {% endfor %}
             </ul>
             <hr>
-            <p>{{ product_count }} products found.</p>
-            <p>Average Price: {{ price_calcs.price__avg }} TL </p> <!-- not sure, but dictionary key created with processed with func name and its parameter -->
+            <!--<p>{{ product_count }} products found.</p>
+            <p>Average Price: {{ price_calcs.price__avg }} TL </p> not sure, but dictionary key created with processed with func name and its parameter
             <p>Min Price: {{ price_calcs.price__min}} TL </p>
-            <p>Max Price: {{ price_calcs.price__max}} TL </p>
+            <p>Max Price: {{ price_calcs.price__max}} TL </p>-->
             </div>
         </div>
     </div>
